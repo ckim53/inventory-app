@@ -1,0 +1,17 @@
+<h1>Messages</h1>
+<% messages.forEach(msg => { %>
+    <div>
+      <p><%= msg.username %></p>
+      <p><%= msg.text %></p>
+      <% const formattedDate = new Date(msg.date).toLocaleString('en-US', {
+        weekday: 'short',
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit'
+      }) %>
+      <p><%= formattedDate %></p>
+    </div>
+<% }) %>
+<br>
