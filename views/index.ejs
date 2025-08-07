@@ -1,17 +1,7 @@
-<h1>Messages</h1>
-<% messages.forEach(msg => { %>
-    <div>
-      <p><%= msg.username %></p>
-      <p><%= msg.text %></p>
-      <% const formattedDate = new Date(msg.date).toLocaleString('en-US', {
-        weekday: 'short',
-        year: 'numeric',
-        month: 'numeric',
-        day: 'numeric',
-        hour: 'numeric',
-        minute: '2-digit'
-      }) %>
-      <p><%= formattedDate %></p>
-    </div>
-<% }) %>
-<br>
+<h1>Inventory Dashboard</h1>
+<ul>
+  <li><a href="/products">Products</a></li>
+  <li><a href="/suppliers">Suppliers</a></li>
+  <li><a href="/restocks">Restocks</a></li>
+  <li><a href="/sales">Sales</a></li>
+</ul>

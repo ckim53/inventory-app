@@ -1,0 +1,40 @@
+<h1><%= title %></h1>
+
+<% if (type === 'suppliers') { %>
+  <% suppliers.forEach(supplier => { %>
+    <div>
+      <a href="/item?title=<%= title %>&type=<%= type %>&id=<%= supplier.id %>">
+        <p><%= supplier.name %></p>
+      </a>
+    </div>
+  <% }) %>
+
+<% } else if (type === 'products') { %>
+  <% products.forEach(product => { %>
+    <div>
+      <a href="/item?title=<%= title %>&type=<%= type %>&id=<%= product.id %>">
+        <p><%= product.name %></p>
+      </a>
+    </div>
+  <% }) %>
+
+<% } else if (type === 'restocks') { %>
+  <% restocks.forEach(r => { %>
+    <div>
+      <a href="/item?title=<%= title %>&type=<%= type %>&id=<%= r.id %>">
+        <p><%= r.date %></p>
+      </a>
+    </div>
+  <% }) %>
+
+<% } else if (type === 'sales') { %>
+  <% sales.forEach(sale => { %>
+    <div>
+      <a href="/item?title=<%= title %>&type=<%= type %>&id=<%= sale.id %>">
+        <p><%= sale.date %></p>
+      </a>
+    </div>
+  <% }) %>
+<% } %>
+
+
