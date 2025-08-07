@@ -11,7 +11,21 @@ async function addProduct(req, res) {
 	res.redirect('/products');
 }
 
+async function editProduct(req, res) {
+	const { id, title, type, name, sku, price, quantity, supplier_id } = req.body;
+	const data = await db.updateProduct(
+		id,
+		name,
+		sku,
+		price,
+		quantity,
+		supplier_id,
+	);
+	res.render('item', { title, type, data }); 
+}
+
 module.exports = {
 	displayProducts,
 	addProduct,
+	editProduct,
 };

@@ -11,7 +11,14 @@ async function addSupplier(req, res) {
 	res.redirect('/suppliers');
 }
 
+async function editSupplier(req, res) {
+	const { id, title, type, name, contact } = req.body;
+	const data = await db.updateSupplier(id, name, contact);
+	res.render('item', { title, type, data });
+}
+
 module.exports = {
 	displaySuppliers,
 	addSupplier,
+	editSupplier,
 };

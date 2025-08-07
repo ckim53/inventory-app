@@ -11,8 +11,7 @@
   <p><strong>Quantity:</strong> <%= data.quantity %></p>
 
 <% } else if (type === 'restocks') { %>
-  <p><strong>Product ID:</strong> <%= data.product_id %></p>
-  <p><strong>Supplier ID:</strong> <%= data.supplier_id %></p>
+  <p><strong>Product Name:</strong> <%= data.product_id %></p>
   <p><strong>Quantity:</strong> <%= data.quantity %></p>
   <p><strong>Date:</strong> <%= data.date %></p>
 
@@ -21,5 +20,8 @@
   <p><strong>Total Amount:</strong> $<%= data.total_amount %></p>
 <% } %>
 
+<button type="button" onclick="window.location.href='/edit?title=<%= title %>&type=<%= type %>&id=<%= data.id %>'">
+  Edit
+</button>
 <br>
 

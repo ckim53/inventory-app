@@ -35,6 +35,42 @@ async function getItemFromTable(id, table) {
 	return item.rows[0];
 }
 
+async function updateProduct(id, name, sku, price, quantity, supplier_id) {
+	await pool.query(
+		`UPDATE products SET name=$1, sku=$2, price=$3, quantity=$4, supplier_id=$5 WHERE id=$6`,
+		[name, sku, price, quantity, supplier_id, id],
+	);
+	const item = await pool.query(`SELECT * FROM products WHERE id = $1`, [id]);
+	return item.rows[0];
+}
+
+async function updateSupplier(id, name, contact_info) {
+	await pool.query(
+		`UPDATE suppliers SET name=$1, contact_info=$2 WHERE id=$3`,
+		[name, contact_info, id],
+	);
+	const item = await pool.query(`SELECT * FROM suppliers WHERE id = $1`, [id]);
+	return item.rows[0];
+}
+
+async function updateRestock(id, product_id, quantity) {
+	await pool.query(
+		`UPDATE restocks SET product_id=$1, quantity=$2 WHERE id=$3`,
+		[product_id, quantity, id],
+	);
+	const item = await pool.query(`SELECT * FROM restocks WHERE id = $1`, [id]);
+	return item.rows[0];
+}
+
+async function updateSale(id, total_amount) {
+	await pool.query(`UPDATE sales SET total_amount=$1 WHERE id=$2`, [
+		total_amount,
+		id,
+	]);
+	const item = await pool.query(`SELECT * FROM sales WHERE id = $1`, [id]);
+	return item.rows[0];
+}
+
 module.exports = {
 	display,
 	getItemFromTable,
@@ -42,4 +78,8 @@ module.exports = {
 	insertRestock,
 	insertSales,
 	insertSupplier,
+	updateProduct,
+	updateRestock,
+	updateSale,
+	updateSupplier,
 };

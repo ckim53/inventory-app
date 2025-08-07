@@ -11,7 +11,14 @@ async function addSales(req, res) {
 	res.redirect('/sales');
 }
 
+async function editSales(req, res) {
+	const { id, title, type, total } = req.body;
+	const data = await db.updateSale(id, total);
+	res.render('item', { title, type, data }); 
+}
+
 module.exports = {
 	displaySales,
 	addSales,
+	editSales,
 };
