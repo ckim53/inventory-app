@@ -12,11 +12,8 @@ async function insertSupplier(name, contact) {
 	);
 }
 
-async function insertSales(date, total) {
-	await pool.query('INSERT INTO sales (date, total_amount) VALUES ($1, $2)', [
-		date,
-		total,
-	]);
+async function insertSales(total) {
+	await pool.query('INSERT INTO sales (total_amount) VALUES ($1)', [total]);
 }
 
 async function insertProduct(name, sku, price, quantity, supplierId) {
@@ -26,16 +23,14 @@ async function insertProduct(name, sku, price, quantity, supplierId) {
 	);
 }
 
-async function insertRestock(productId, supplierId, quantity, date) {
+async function insertRestock(productId, quantity, date) {
 	await pool.query(
-		'INSERT INTO restocks (product_id, supplierIid, quantity, date) VALUES ($1, $2, $3, $4)',
-		[productId, supplierId, quantity, date],
+		'INSERT INTO restocks (product_id, quantity, date) VALUES ($1, $2, $3)',
+		[productId, quantity, date],
 	);
 }
 
 async function getItemFromTable(id, table) {
-	console.log(id);
-	console.log(table);
 	const item = await pool.query(`SELECT * FROM ${table} WHERE id = $1`, [id]);
 	return item.rows[0];
 }

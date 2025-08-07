@@ -5,6 +5,7 @@ const suppliersRouter = require('./routes/suppliersRouter');
 const restocksRouter = require('./routes/restocksRouter');
 const salesRouter = require('./routes/salesRouter');
 const itemRouter = require('./routes/itemRouter');
+const controller = require('./controllers/itemController')
 
 app.get('/', (req, res) => {
     res.render('index');
@@ -16,6 +17,7 @@ app.use('/suppliers', suppliersRouter);
 app.use('/restocks', restocksRouter);
 app.use('/sales', salesRouter);
 app.use('/item', itemRouter);
+app.get('/add', controller.showAddForm);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Express app listening on port ${PORT}!`));

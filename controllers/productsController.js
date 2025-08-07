@@ -5,6 +5,13 @@ async function displayProducts(req, res) {
 	res.render('category', { title: 'Products', type: 'products', products });
 }
 
+async function addProduct(req, res) {
+	const { name, sku, price, quantity, supplier_id } = req.body;
+	await db.insertProduct(name, sku, price, quantity, supplier_id);
+	res.redirect('/products');
+}
+
 module.exports = {
 	displayProducts,
+	addProduct,
 };

@@ -6,6 +6,13 @@ async function getItem(req, res) {
 	res.render('item', { title: title.slice(0, -1), type, data });
 }
 
+async function showAddForm(req, res) {
+	const products = await db.display('products');
+	const suppliers = await db.display('suppliers');
+	res.render('add', { products, suppliers });
+}
+
 module.exports = {
 	getItem,
+	showAddForm,
 };

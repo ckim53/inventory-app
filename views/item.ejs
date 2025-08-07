@@ -1,26 +1,22 @@
 <h1><%= title + ' Details' %></h1>
 
 <% if (type === 'suppliers') { %>
-  <p><strong>ID:</strong> <%= data.id %></p>
   <p><strong>Name:</strong> <%= data.name %></p>
   <p><strong>Contact Info:</strong> <%= data.contact_info %></p>
 
 <% } else if (type === 'products') { %>
-  <p><strong>ID:</strong> <%= data.id %></p>
   <p><strong>Name:</strong> <%= data.name %></p>
   <p><strong>SKU:</strong> <%= data.sku %></p>
   <p><strong>Price:</strong> $<%= data.price %></p>
   <p><strong>Quantity:</strong> <%= data.quantity %></p>
 
 <% } else if (type === 'restocks') { %>
-  <p><strong>ID:</strong> <%= data.id %></p>
   <p><strong>Product ID:</strong> <%= data.product_id %></p>
   <p><strong>Supplier ID:</strong> <%= data.supplier_id %></p>
   <p><strong>Quantity:</strong> <%= data.quantity %></p>
   <p><strong>Date:</strong> <%= data.date %></p>
 
 <% } else if (type === 'sales') { %>
-  <p><strong>ID:</strong> <%= data.id %></p>
   <p><strong>Date:</strong> <%= data.date %></p>
   <p><strong>Total Amount:</strong> $<%= data.total_amount %></p>
 <% } %>
