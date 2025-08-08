@@ -1,8 +1,8 @@
 const db = require('../db/queries.js');
 
 async function displayProducts(req, res) {
-	const products = await db.display('products');
-	res.render('category', { title: 'Products', type: 'products', products });
+	const data = await db.display('products');
+	res.render('category', { title: 'Products', type: 'products', data });
 }
 
 async function addProduct(req, res) {
@@ -13,6 +13,7 @@ async function addProduct(req, res) {
 
 async function editProduct(req, res) {
 	const { id, title, type, name, sku, price, quantity, supplier_id } = req.body;
+	const supplier_name = await db.getItemDetails('suppliers', supplier_id);
 	const data = await db.updateProduct(
 		id,
 		name,
@@ -21,7 +22,7 @@ async function editProduct(req, res) {
 		quantity,
 		supplier_id,
 	);
-	res.render('item', { title, type, data }); 
+	res.render('item', { title, type, data, supplier_name });
 }
 
 module.exports = {

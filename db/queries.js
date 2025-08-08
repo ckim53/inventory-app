@@ -1,9 +1,44 @@
 const pool = require('./pool');
 
+async function deleteItemFromTable(table, id) {
+	await pool.query(`DELETE FROM ${table} WHERE id=$1`, [id]);
+}
+
 async function display(table) {
 	const { rows } = await pool.query(`SELECT * FROM ${table}`);
 	return rows;
 }
+
+// db.js
+async function getItemDetails(type, id) {
+	switch (type) {
+	  case 'restocks':
+		return (await pool.query(
+		  `SELECT r.*, p.name AS product_name, p.sku, p.price
+		   FROM restocks r
+		   JOIN products p ON p.id = r.product_id
+		   WHERE r.id = $1`, [id]
+		)).rows[0];
+  
+	  case 'products':
+		return (await pool.query(
+		  `SELECT p.*, s.name AS supplier_name
+		   FROM products p
+		   LEFT JOIN suppliers s ON s.id = p.supplier_id
+		   WHERE p.id = $1`, [id]
+		)).rows[0];
+  
+	  case 'suppliers':
+		return (await pool.query(`SELECT * FROM suppliers WHERE id=$1`, [id])).rows[0];
+  
+	  case 'sales':
+		return (await pool.query(`SELECT * FROM sales WHERE id=$1`, [id])).rows[0];
+  
+	  default:
+		throw new Error('Unknown type');
+	}
+  }
+  
 
 async function insertSupplier(name, contact) {
 	await pool.query(
@@ -30,10 +65,7 @@ async function insertRestock(productId, quantity, date) {
 	);
 }
 
-async function getItemFromTable(id, table) {
-	const item = await pool.query(`SELECT * FROM ${table} WHERE id = $1`, [id]);
-	return item.rows[0];
-}
+
 
 async function updateProduct(id, name, sku, price, quantity, supplierId) {
 	await pool.query(
@@ -77,8 +109,9 @@ async function getProductById(product_id) {
 }
 
 module.exports = {
+	deleteItemFromTable,
 	display,
-	getItemFromTable,
+	getItemDetails,
 	getProductById,
 	insertProduct,
 	insertRestock,

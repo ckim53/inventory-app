@@ -1,8 +1,8 @@
 const db = require('../db/queries.js');
 
 async function displayRestocks(req, res) {
-	const restocks = await db.display('restocks');
-	res.render('category', { title: 'Restocks', type: 'restocks', restocks });
+	const data = await db.display('restocks');
+	res.render('category', { title: 'Restocks', type: 'restocks', data });
 }
 
 async function addRestock(req, res) {
@@ -14,7 +14,7 @@ async function addRestock(req, res) {
 async function editRestock(req, res) {
 	const { id, title, type, product_id, quantity } = req.body;
 	const data = await db.updateRestock(id, product_id, quantity);
-	const product_name = await db.getProductById(product_id);
+	const product_name = await db.getItemDetails('products', product_id);
 	res.render('item', { title, type, data, product_name });
 }
 

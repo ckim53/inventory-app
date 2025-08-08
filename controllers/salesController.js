@@ -1,8 +1,8 @@
 const db = require('../db/queries.js');
 
 async function displaySales(req, res) {
-	const sales = await db.display('sales');
-	res.render('category', { title: 'Sales', type: 'sales', sales });
+	const data = await db.display('sales');
+	res.render('category', { title: 'Sales', type: 'sales', data });
 }
 
 async function addSales(req, res) {

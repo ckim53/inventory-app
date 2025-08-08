@@ -1,7 +1,7 @@
 <h1><%= title %></h1>
 
 <% if (type === 'suppliers') { %>
-  <% suppliers.forEach(supplier => { %>
+  <% data.forEach(supplier => { %>
     <div>
       <a href="/item?title=<%= title %>&type=<%= type %>&id=<%= supplier.id %>">
         <p><%= supplier.name %></p>
@@ -10,7 +10,7 @@
   <% }) %>
 
 <% } else if (type === 'products') { %>
-  <% products.forEach(product => { %>
+  <% data.forEach(product => { %>
     <div>
       <a href="/item?title=<%= title %>&type=<%= type %>&id=<%= product.id %>">
         <p><%= product.name %></p>
@@ -19,7 +19,7 @@
   <% }) %>
 
 <% } else if (type === 'restocks') { %>
-  <% restocks.forEach(r => { %>
+  <% data.forEach(r => { %>
     <div>
       <a href="/item?title=<%= title %>&type=<%= type %>&id=<%= r.id %>">
         <p><%= r.date %></p>
@@ -28,7 +28,7 @@
   <% }) %>
 
 <% } else if (type === 'sales') { %>
-  <% sales.forEach(sale => { %>
+  <% data.forEach(sale => { %>
     <div>
       <a href="/item?title=<%= title %>&type=<%= type %>&id=<%= sale.id %>">
         <p><%= sale.date %></p>

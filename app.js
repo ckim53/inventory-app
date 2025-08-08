@@ -21,6 +21,7 @@ app.use('/sales', salesRouter);
 app.use('/item', itemRouter);
 app.get('/add', controller.showAddForm);
 app.get('/edit', controller.showEditForm);
+app.get('/delete', controller.deleteItem);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Express app listening on port ${PORT}!`));
