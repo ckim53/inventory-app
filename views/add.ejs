@@ -38,7 +38,7 @@
             <option value="<%= p.id %>"><%= p.name %></option>
             <% }) %>
         </select>
-        
+        <input type="hidden" name="product_name" id="product-name">
         <label>Quantity:</label>
         <input type="number" name="quantity" />
 	</div>
@@ -63,6 +63,13 @@
     const form = document.getElementById('add-form');
     const categorySelect = document.getElementById('category-select');
     const sections = document.querySelectorAll('.form-section');
+    const productSelect = document.getElementById('product-select');
+    const productNameField = document.getElementById('product-name');
+
+    productSelect.addEventListener('change', () => {
+        const selectedOption = productSelect.options[productSelect.selectedIndex];
+        productNameField.value = selectedOption.text;
+    });
   
     const routeMap = {
         products: '/products/add',
@@ -99,3 +106,4 @@
         }
     });
 </script>
+<%- include('home')%>

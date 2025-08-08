@@ -11,7 +11,7 @@
   <p><strong>Quantity:</strong> <%= data.quantity %></p>
 
 <% } else if (type === 'restocks') { %>
-  <p><strong>Product Name:</strong> <%= data.product_id %></p>
+  <p><strong>Product Name:</strong> <%= product_name %></p>
   <p><strong>Quantity:</strong> <%= data.quantity %></p>
   <p><strong>Date:</strong> <%= data.date %></p>
 
@@ -25,3 +25,4 @@
 </button>
 <br>
 
+<%- include('home')%>

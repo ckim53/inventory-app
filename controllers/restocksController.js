@@ -13,8 +13,9 @@ async function addRestock(req, res) {
 
 async function editRestock(req, res) {
 	const { id, title, type, product_id, quantity } = req.body;
-	const data = await db.updateProduct(id, product_id, quantity);
-	res.render('item', { title, type, data }); 
+	const data = await db.updateRestock(id, product_id, quantity);
+	const product_name = await db.getProductById(product_id);
+	res.render('item', { title, type, data, product_name });
 }
 
 module.exports = {

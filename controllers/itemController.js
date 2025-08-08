@@ -3,7 +3,9 @@ const db = require('../db/queries.js');
 async function getItem(req, res) {
 	const { title, type, id } = req.query;
 	const data = await db.getItemFromTable(id, type);
-	res.render('item', { title: title.slice(0, -1), type, data });
+	const product_name =
+		type == 'restocks' ? await db.getProductById(data.product_id) : null;
+	res.render('item', { title: title.slice(0, -1), type, data, product_name });
 }
 
 async function showAddForm(req, res) {
