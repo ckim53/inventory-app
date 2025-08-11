@@ -3,6 +3,7 @@
     <input type="hidden" name="id" value="<%= data.id %>">
     <input type="hidden" name="type" value="<%= type %>">
     <input type="hidden" name="title" value="<%= title %>">
+
 	<div class="form-section" id="edit-products-fields" style="display: none">
 		<label>Name:</label>
         <input type="text" name="name" value="<%= data.name %>" required/> 
@@ -19,7 +20,7 @@
         <label>Supplier:</label>
         <select name="supplier_id" required>
         <% suppliers.forEach(s => { %>
-            <option value="<%= s.id %>" <%= s.id === data.id ? 'selected' : '' %>>
+            <option value="<%= s.id %>" <%= s.id === data.supplier_id ? 'selected' : '' %>>
                 <%= s.name %>
             </option>
         <% }) %>

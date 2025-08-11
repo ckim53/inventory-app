@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const expressLayouts = require('express-ejs-layouts');
 const productsRouter = require('./routes/productsRouter');
 const suppliersRouter = require('./routes/suppliersRouter');
 const restocksRouter = require('./routes/restocksRouter');

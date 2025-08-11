@@ -21,8 +21,16 @@
 <% } else if (type === 'restocks') { %>
   <% data.forEach(r => { %>
     <div>
+    <% const formattedDate = new Date(r.date).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true   
+    }) %>
       <a href="/item?title=<%= title %>&type=<%= type %>&id=<%= r.id %>">
-        <p><%= r.date %></p>
+        <p><%= formattedDate %></p>
       </a>
     </div>
   <% }) %>
@@ -30,11 +38,19 @@
 <% } else if (type === 'sales') { %>
   <% data.forEach(sale => { %>
     <div>
+    <% const formattedDate = new Date(sale.date).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true   
+    }) %>  
       <a href="/item?title=<%= title %>&type=<%= type %>&id=<%= sale.id %>">
-        <p><%= sale.date %></p>
+        <p><%= formattedDate %></p>
       </a>
     </div>
   <% }) %>
 <% } %>
-
+<br><br>
 <%- include('home')%>
