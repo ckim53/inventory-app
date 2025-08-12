@@ -6,8 +6,10 @@ const restocksRouter = require('./routes/restocksRouter');
 const salesRouter = require('./routes/salesRouter');
 const itemRouter = require('./routes/itemRouter');
 const controller = require('./controllers/itemController');
+const path = require('path');
 
 app.set('view engine', 'ejs');
+app.use(express.static(path.join(process.cwd(), "public")));
 app.get('/', (req, res) => {
 	res.render('index');
 });
