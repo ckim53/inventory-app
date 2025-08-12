@@ -12,7 +12,8 @@
     "react": "^19.1.1"
   },
   "scripts": {
-    "start": "node --watch app.js"
+    "start": "node --watch app.js",
+    "populatedb": "node populatedb.js"
   },
   "type": "commonjs"
 }
